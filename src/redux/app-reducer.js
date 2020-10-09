@@ -1,5 +1,3 @@
-import { authMe } from './auth-reducer'
-
 const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS'
 
 let initialState = {
@@ -23,7 +21,5 @@ export default appReducer
 const initializedSuccess = () => ( { type: INITIALIZED_SUCCESS } )
 
 export const initializeApp = () => ( dispatch ) => {
-	dispatch( authMe() ).then( () => {
-		dispatch( initializedSuccess() )
-	} )
+	dispatch( initializedSuccess() )
 }
