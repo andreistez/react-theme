@@ -1,7 +1,10 @@
-const INITIALIZED_SUCCESS = 'INITIALIZED-SUCCESS'
+import { authApi } from '../api/api'
+
+const INITIALIZED_SUCCESS = 'app/INITIALIZED-SUCCESS'
+const GET_API_TOKEN = 'app/GET-API-TOKEN'
 
 let initialState = {
-	initialized: false
+	initialized	: false
 }
 
 const appReducer = ( state = initialState, action ) => {

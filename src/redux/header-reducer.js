@@ -57,7 +57,7 @@ const getMenu = ( menu ) => ( { type: GET_MENU, menu } )
 const getLogo = ( logo ) => ( { type: GET_LOGO, logo } )
 const getPhone = ( phone ) => ( { type: GET_PHONE, phone } )
 const getButtonText = ( text ) => ( { type: GET_BUTTON_TEXT, text } )
-const getError = ( errorText ) => ( { type: GET_MENU_ERROR, errorText } )
+const getError = ( errorText ) => ( { type: GET_ERROR, errorText } )
 
 export const getLogotype = ( logoOptionName ) => async ( dispatch ) => {
 	let response = await headerAPI.getLogo( logoOptionName )

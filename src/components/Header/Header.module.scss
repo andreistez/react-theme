@@ -1,28 +1,133 @@
 .header {
 	display: grid;
-	grid-area: h;
-	grid-template-columns: 50% 50%;
+	grid-template-areas:
+		'logo nav'
+		'phone phone'
+		'order order';
 	align-items: center;
-	background-color: transparent;
-	color:  #f9f9f9;
-	padding: 5px 0 0
+	background-color: #121212;
+	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
+	padding: 15px;
+	grid-row-gap: 15px
 }
 
 .header-logo {
-	height: 30px
+	grid-area: logo;
+	height: 100px
 }
 
 .header-logo__img {
 	height: 100%
 }
 
-.authorization {
-	display: grid;
-	justify-self: end;
-	color: #323232
+.navigation {
+	grid-area: nav;
+	text-align: right
 }
 
-.authorization__link {
+.mobile-menu__icon {
+	font-size: 23px;
 	color: #ff6000;
-	text-decoration: none
+
+	&:hover {
+		color: lighten( #ff6000, 15% )
+	}
+}
+
+.header-menu {
+	display: none
+}
+
+.header-menu__item {
+	float: left;
+	margin-right: 20px;
+
+	&:last-child {
+		margin-right: 0
+	}
+}
+
+.header-menu__link {
+	font-family: Montserrat;
+	font-weight: bold;
+	color: #f9f9f9;
+
+	&:hover {
+		color: #ff6000
+	}
+}
+
+.header-phone {
+	grid-area: phone;
+    justify-self: center
+}
+
+.header-phone__icon {
+    font-size: 23px;
+    color: #f9f9f9;
+    margin-right: 10px
+}
+
+.header-phone__link {
+	color: #f9f9f9;
+    font-family: Montserrat;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 21px;
+
+    &:hover {
+    	color: #ff6000
+    }
+}
+
+.header-order {
+	grid-area: order;
+	justify-self: center;
+	width: 100%
+}
+
+.header-order__button {
+	width: 100%
+}
+
+@media (min-width: 768px) {
+	.header {
+		grid-template-areas: 'logo nav phone order';
+		grid-template-columns: 83px auto auto 297px;
+		grid-column-gap: 30px;
+		padding: 15px 30px
+	}
+
+	.navigation {
+		text-align: left
+	}
+
+	.header-phone {
+	    justify-self: end
+	}
+
+	.header-phone__link {
+		font-size: 17px
+	}
+
+	.header-order {
+		justify-self: end;
+		width: auto
+	}
+}
+
+@media (min-width: 992px) {
+	.header-phone__link {
+		font-size: 23px
+	}
+}
+
+@media (min-width: 1200px) {
+	.mobile-menu__icon {
+		display: none
+	}
+
+	.header-menu {
+		display: block
+	}
 }

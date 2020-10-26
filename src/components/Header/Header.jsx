@@ -1,6 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './Header.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
+import FastOrder from './FastOrder/FastOrder'
 
 const Header = ( props ) => {
     return (
@@ -10,21 +13,43 @@ const Header = ( props ) => {
         	</div>
 
         	<nav className = { s.navigation }>
-                {
-                    props.menu.map(
-                        ( item, i ) => <NavLink key = { i } to = { item.url }>{ item.title }</NavLink>
-                    )
-                }
+                <button className = { s['mobile-menu__icon'] }>
+                    <FontAwesomeIcon icon = { faBars } />
+                </button>
+
+                <ul className = { s['header-menu'] }>
+                    {
+                        props.menu.map(
+                            ( item, i ) => (
+                                <li key = { i } className = { s['header-menu__item'] }>
+                                    <NavLink className = { s['header-menu__link'] } to = { item.url }>
+                                        { item.title }
+                                    </NavLink>
+                                </li>
+                            )
+                        )
+                    }
+                </ul>
             </nav>
 
             <div className = { s['header-phone'] }>
-                { props.phone }
+                <span className = { s['header-phone__icon'] }>
+                    <FontAwesomeIcon icon = { faMobileAlt } />
+                </span>
+                <a href = { `tel:${props.phoneFiltered}` } title = { props.phone } className = { s['header-phone__link'] }>
+                    { props.phone }
+                </a>
             </div>
 
             <div className = { s['header-order'] }>
-                <button className = "button">
+                <button
+                    className   = { 'button ' + s['header-order__button'] }
+                    title       = { props.buttonText }
+                    onClick     = { props.showForm }>
                     { props.buttonText }
                 </button>
+
+                <FastOrder isVisible = { props.isVisible } />
             </div>
         </header>
     )

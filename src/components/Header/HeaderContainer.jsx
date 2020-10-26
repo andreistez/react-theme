@@ -7,12 +7,14 @@ import {
     getPhoneFromREST,
     getButtonTextFromREST
 } from '../../redux/header-reducer'
+import { showForm } from '../../redux/fast-order-reducer'
 import {
     getLogoFromState,
     getMenuStructureFromState,
     getPhoneFromState,
     getButtonTextFromState
 } from '../../redux/header-selectors'
+import { getVisibilityFromState } from '../../redux/fast-order-selectors'
 import Preloader from '../common/Preloader/Preloader'
 
 class HeaderContainer extends React.Component {
@@ -23,16 +25,42 @@ class HeaderContainer extends React.Component {
         this.props.getButtonTextFromREST( 'header_button' )
 	}
 
-    render() {
+    clearPhone = ( phone ) => {
+        // Convert phone number string to array.
+        let phoneArray = phone.split( '' )
+        // Remove unnecessary characters.
+        let phoneFiltered = phoneArray.filter( symbol => {
+            if ( symbol !== '('
+                 && symbol !== ')'
+                 && symbol !== '-'
+                 && symbol !== ' ' ) {
+                return symbol
+            }
+        } )
+
+        // Return filtered array converted to string phone number.
+        return phoneFiltered.join( '' )
+    }
+
+    render = () => {
     	if ( this.props.menu.length === 0
-             && ! this.props.logo
-             && ! this.props.phone ) {
+             || ! this.props.logo
+             || ! this.props.phone
+             || this.props.buttonText === '' ) {
     		return <Preloader />
     	}	else {
-    		return <Header  logo = { this.props.logo }
-                            menu = { this.props.menu }
-                            phone = { this.props.phone }
-                            buttonText = { this.props.buttonText } />
+    		return (
+                <Header
+                    logo            = { this.props.logo }
+                    menu            = { this.props.menu }
+                    phone           = { this.props.phone }
+                    phoneFiltered   = { this.clearPhone( this.props.phone ) }
+                    buttonText      = { this.props.buttonText }
+                    isVisible       = { this.props.isVisible }
+                    showForm        = { this.props.showForm }
+                    hideForm        = { this.props.hideForm }
+                />
+            )
     	}
     }
 }
@@ -42,7 +70,8 @@ let mapStateToProps = ( state ) => {
         logo        : getLogoFromState( state ),
     	menu        : getMenuStructureFromState( state ),
         phone       : getPhoneFromState( state ),
-        buttonText  : getButtonTextFromState( state )
+        buttonText  : getButtonTextFromState( state ),
+        isVisible   : getVisibilityFromState( state )
     }
 }
 
@@ -50,5 +79,6 @@ export default connect( mapStateToProps, {
     getLogotype,
     getMenuStructure,
     getPhoneFromREST,
-    getButtonTextFromREST
+    getButtonTextFromREST,
+    showForm
 } )( HeaderContainer )

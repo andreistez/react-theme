@@ -9,8 +9,10 @@ import { initializeApp } from './redux/app-reducer'
 import './App.css'
 import Preloader from './components/common/Preloader/Preloader'
 import HeaderContainer from './components/Header/HeaderContainer'
+import FooterContainer from './components/Footer/FooterContainer'
 import ContactsContainer from './components/Contacts/ContactsContainer'
 import MainContainer from './components/Main/MainContainer'
+import PageContainer from './components/Page/PageContainer'
 
 class App extends Component {
     componentDidMount() {
@@ -28,12 +30,14 @@ class App extends Component {
 
                 <main>
                     <Route exact path = "/" render = {
-                        () => <MainContainer />
+                        () => <PageContainer />
                     } />
-                    <Route path = "/kontakty" render = {
-                        () => <ContactsContainer />
+                    <Route exact path = "/:pageSlug" render = {
+                        () => <PageContainer />
                     } />
                 </main>
+
+                <FooterContainer />
             </div>
         )
     }

@@ -1,0 +1,131 @@
+$brand: #ff6000;
+$white: #f9f9f9;
+$text: #323232;
+
+@mixin tr( $time ) {
+    transition: all ease-in-out $time
+}
+
+@font-face {
+    font-family: Piazzolla;
+    src: url( 'fonts/Piazzolla-Light.woff2' ) format( 'woff2' );
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url( 'fonts/Montserrat-ExtraBold.woff2' ) format( 'woff2' );
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+	margin: 0;
+	font-family: Piazzolla;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 16px;
+	color: $text
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Montserrat
+}
+
+a,
+button {
+    text-decoration: none;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    @include tr( 300ms )
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+p {
+    margin: 0
+}
+
+section {
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat
+}
+
+form {
+    width: 100%;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    text-align: center
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0
+}
+
+legend {
+    width: 100%
+}
+
+.button {
+    font-family: Montserrat;
+    background-color: $brand;
+    border: none;
+    height: 50px;
+    padding: 0 25px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: $white;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+
+    &:hover {
+        background-color: lighten($brand, 15%)
+    }
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid #efefef;
+    width: 100%;
+    font-family: Montserrat;
+    font-size: 14px;
+    color: $text;
+    padding: 0;
+    height: 40px
+}
+
+.section-main {
+    height: 850px
+}
+
+@media (min-width: 768px) {
+    form {
+        width: 500px
+    }
+}

@@ -1,0 +1,17 @@
+.error {
+	border-color: #ff3e3e
+}
+
+.textarea-wrapper {
+	position: relative
+}
+
+.error-text {
+	color: #ff3e3e;
+	text-align: left;
+	font-family: Montserrat;
+	font-size: 14px;
+	position: absolute;
+	bottom: -20px;
+	left: 0
+}
