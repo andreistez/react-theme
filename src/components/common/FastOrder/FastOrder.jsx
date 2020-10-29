@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import { Input, createField } from '../FormControls/FormControls'
 import { required, maxLengthCreator } from '../../../utils/validators/validators'
@@ -17,7 +17,7 @@ import {
 } from '../../../redux/fast-order-selectors'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const maxLength20 = maxLengthCreator( 20 )
 const maxLength40 = maxLengthCreator( 40 )

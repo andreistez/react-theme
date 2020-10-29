@@ -28,7 +28,7 @@ class HeaderContainer extends React.Component {
         this.props.getButtonTextFromREST( 'header_button' )
 	}
 
-    clearPhone = ( phone ) => {
+    clearPhone = phone => {
         // Convert phone number string to array.
         let phoneArray = phone.split( '' )
         // Remove unnecessary characters.
