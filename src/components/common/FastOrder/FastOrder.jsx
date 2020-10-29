@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 
-import { Input, createField } from '../../common/FormControls/FormControls'
+import { Input, createField } from '../FormControls/FormControls'
 import { required, maxLengthCreator } from '../../../utils/validators/validators'
 
 import s from './FastOrder.module.scss'

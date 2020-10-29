@@ -8,6 +8,7 @@ import {
     getFooterButtonTextFromREST,
     getFooterCopyrightsFromREST
 } from '../../redux/footer-reducer'
+import { showForm } from '../../redux/fast-order-reducer'
 import {
     getFooterLogoFromState,
     getFooterMenuStructureFromState,
@@ -51,12 +52,15 @@ class FooterContainer extends React.Component {
              || this.props.copyrights === '' ) {
     		return <Preloader />
     	}	else {
-    		return <Footer  logo = { this.props.logo }
-                            menu = { this.props.menu }
-                            phone = { this.props.phone }
-                            phoneFiltered = { this.clearPhone( this.props.phone ) }
-                            buttonText = { this.props.buttonText }
-                            copyrights = { this.props.copyrights } />
+    		return <Footer
+                logo            = { this.props.logo }
+                menu            = { this.props.menu }
+                phone           = { this.props.phone }
+                phoneFiltered   = { this.clearPhone( this.props.phone ) }
+                buttonText      = { this.props.buttonText }
+                copyrights      = { this.props.copyrights }
+                showForm        = { this.props.showForm }
+            />
     	}
     }
 }
@@ -76,5 +80,6 @@ export default connect( mapStateToProps, {
     getFooterMenuStructure,
     getFooterPhoneFromREST,
     getFooterButtonTextFromREST,
-    getFooterCopyrightsFromREST
+    getFooterCopyrightsFromREST,
+    showForm
 } )( FooterContainer )

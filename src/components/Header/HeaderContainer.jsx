@@ -5,14 +5,17 @@ import {
     getLogotype,
     getMenuStructure,
     getPhoneFromREST,
-    getButtonTextFromREST
+    getButtonTextFromREST,
+    openMobileMenu,
+    closeMobileMenu
 } from '../../redux/header-reducer'
 import { showForm } from '../../redux/fast-order-reducer'
 import {
     getLogoFromState,
     getMenuStructureFromState,
     getPhoneFromState,
-    getButtonTextFromState
+    getButtonTextFromState,
+    getIsMobileMenuOpenFromState
 } from '../../redux/header-selectors'
 import { getVisibilityFromState } from '../../redux/fast-order-selectors'
 import Preloader from '../common/Preloader/Preloader'
@@ -51,14 +54,17 @@ class HeaderContainer extends React.Component {
     	}	else {
     		return (
                 <Header
-                    logo            = { this.props.logo }
-                    menu            = { this.props.menu }
-                    phone           = { this.props.phone }
-                    phoneFiltered   = { this.clearPhone( this.props.phone ) }
-                    buttonText      = { this.props.buttonText }
-                    isVisible       = { this.props.isVisible }
-                    showForm        = { this.props.showForm }
-                    hideForm        = { this.props.hideForm }
+                    logo                = { this.props.logo }
+                    menu                = { this.props.menu }
+                    phone               = { this.props.phone }
+                    phoneFiltered       = { this.clearPhone( this.props.phone ) }
+                    buttonText          = { this.props.buttonText }
+                    isVisible           = { this.props.isVisible }
+                    showForm            = { this.props.showForm }
+                    hideForm            = { this.props.hideForm }
+                    isMobileMenuOpen    = { this.props.isMobileMenuOpen }
+                    openMobileMenu      = { this.props.openMobileMenu }
+                    closeMobileMenu     = { this.props.closeMobileMenu }
                 />
             )
     	}
@@ -67,11 +73,12 @@ class HeaderContainer extends React.Component {
 
 let mapStateToProps = ( state ) => {
     return {
-        logo        : getLogoFromState( state ),
-    	menu        : getMenuStructureFromState( state ),
-        phone       : getPhoneFromState( state ),
-        buttonText  : getButtonTextFromState( state ),
-        isVisible   : getVisibilityFromState( state )
+        logo                : getLogoFromState( state ),
+    	menu                : getMenuStructureFromState( state ),
+        phone               : getPhoneFromState( state ),
+        buttonText          : getButtonTextFromState( state ),
+        isVisible           : getVisibilityFromState( state ),
+        isMobileMenuOpen    : getIsMobileMenuOpenFromState( state )
     }
 }
 
@@ -80,5 +87,7 @@ export default connect( mapStateToProps, {
     getMenuStructure,
     getPhoneFromREST,
     getButtonTextFromREST,
-    showForm
+    showForm,
+    openMobileMenu,
+    closeMobileMenu
 } )( HeaderContainer )

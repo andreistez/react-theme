@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field } from 'redux-form'
 import s from './FormControls.module.scss'
-import orderStyles from '../../Header/FastOrder/FastOrder.module.scss'
+import orderStyles from '../FastOrder/FastOrder.module.scss'
 
 const FormControl = ( { input, meta: { touched, error }, child, ...props } ) => {
 	let hasError = touched && error

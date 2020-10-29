@@ -1,6 +1,6 @@
-@mixin tr() {
-	-webkit-transition: all ease-in-out 300ms;
-			transition: all ease-in-out 300ms
+@mixin tr( $time ) {
+	-webkit-transition: all ease-in-out $time;
+			transition: all ease-in-out $time
 }
 
 .form-field {
@@ -21,9 +21,10 @@
 }
 
 .popup-overlay {
-	display: none;
+	display: grid;
+	opacity: 0;
     position: fixed;
-    z-index: 100;
+    z-index: -1;
     top: 0;
     left: 0;
     width: 100%;
@@ -31,9 +32,22 @@
     background-color: #fff;
     align-content: center;
     justify-content: center;
+    @include tr( 300ms );
+
+    & > .form {
+    	margin-top: 500px;
+    	opacity: 0;
+    	@include tr( 500ms )
+    }
 
     &.visible {
-    	display: grid
+    	z-index: 100;
+    	opacity: 1;
+
+    	& > .form {
+	    	margin-top: 0;
+	    	opacity: 1
+	    }
     }
 }
 
@@ -46,7 +60,7 @@
 .popup-overlay-close__icon {
 	font-size: 30px;
 	cursor: pointer;
-	@include tr();
+	@include tr( 300ms );
 
 	&:hover {
 		color: #ff6000
@@ -95,7 +109,7 @@
 .response-message-close__icon {
 	font-size: 20px;
 	cursor: pointer;
-	@include tr();
+	@include tr( 300ms );
 
 	&:hover {
 		color: #f9f9f9

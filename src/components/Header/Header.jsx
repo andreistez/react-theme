@@ -2,27 +2,36 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './Header.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
-import FastOrder from './FastOrder/FastOrder'
+import { faBars, faTimes, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
+import FastOrder from '../common/FastOrder/FastOrder'
 
-const Header = ( props ) => {
+const Header = props => {
     return (
         <header className = { s.header }>
         	<div className = { s['header-logo'] }>
-                <img className = { s['header-logo__img'] } src = { props.logo } alt = "" />
+                <NavLink to = '/'>
+                    <img className = { s['header-logo__img'] } src = { props.logo } alt = "" />
+                </NavLink>
         	</div>
 
-        	<nav className = { s.navigation }>
-                <button className = { s['mobile-menu__icon'] }>
-                    <FontAwesomeIcon icon = { faBars } />
+            <nav className = { s.navigation }>
+                <button className = { s['mobile-menu__icon'] } onClick = { props.isMobileMenuOpen ? props.closeMobileMenu : props.openMobileMenu }>
+                    {
+                        props.isMobileMenuOpen
+                            ? <FontAwesomeIcon icon = { faTimes } />
+                            : <FontAwesomeIcon icon = { faBars } />
+                    }
                 </button>
 
-                <ul className = { s['header-menu'] }>
+                <ul className = {
+                    s['header-menu'] + ' ' +
+                    ( props.isMobileMenuOpen ? s['mobile-menu-open'] : s['mobile-menu-closed'] )
+                }>
                     {
                         props.menu.map(
                             ( item, i ) => (
                                 <li key = { i } className = { s['header-menu__item'] }>
-                                    <NavLink className = { s['header-menu__link'] } to = { item.url }>
+                                    <NavLink className = { s['header-menu__link'] } to = { item.url } onClick = { props.closeMobileMenu }>
                                         { item.title }
                                     </NavLink>
                                 </li>

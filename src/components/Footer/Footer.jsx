@@ -37,7 +37,7 @@ const Footer = ( props ) => {
             </div>
 
             <div className = { s['footer-order'] }>
-                <button className = { 'button ' + s['footer-order__button'] } title = { props.buttonText }>
+                <button className = { 'button ' + s['footer-order__button'] } title = { props.buttonText } onClick = { props.showForm }>
                     { props.buttonText }
                 </button>
             </div>

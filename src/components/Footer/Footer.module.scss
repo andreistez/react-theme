@@ -7,7 +7,7 @@
 		'order'
 		'bottom';
 	align-items: center;
-	background-color: #c4c4c4;
+	background-color: #121212;
 	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
 	padding: 15px;
 	grid-row-gap: 15px;
@@ -40,7 +40,7 @@
 .footer-menu__link {
 	font-family: Montserrat;
 	font-weight: bold;
-	color: #323232;
+	color: #f9f9f9;
 
 	&:hover {
 		color: #ff6000
@@ -82,12 +82,13 @@
 
 .footer-bottom {
 	grid-area: bottom;
+	color: #f9f9f9;
 
 	a {
-		color: #323232;
+		color: #ff6000;
 
 		&:hover {
-			color: #ff6000
+			color: lighten( #ff6000, 15% )
 		}
 	}
 }
